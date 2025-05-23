@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 sudo ufw --force enable
 sudo apt update && sudo apt upgrade -y
