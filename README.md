@@ -15,14 +15,15 @@ sudo sh get-docker.sh
 ถ้าอยากใช้ MongoDB บน Ubuntu 24.04 ตอนนี้:
 ยังไม่มี official package สำหรับ "noble" ต้องใช้วิธี:
 ```
-# ใช้ repo ของ Ubuntu 22.04 (jammy) แทน
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+หาไฟล์ MongoDB repo
+ls /etc/apt/sources.list.d/
+mongodb-org-7.0.list
 
-# นำ GPG Key ลงใหม่
-curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg
+คอมเมนต์ repo MongoDB
+sudo sed -i 's/^/#/' /etc/apt/sources.list.d/mongodb-org-7.0.list
 
-# ตั้งค่า GPG Key
-echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+docker --version
+docker compose version
 
 ```
 # Clean-Join-Node-Agent-
