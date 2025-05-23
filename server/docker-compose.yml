@@ -5,7 +5,9 @@ services:
     privileged: true
     volumes:
       - rancher_data:/var/lib/rancher
-      - rancher_certs:/var/lib/ca-certificates
+      - /srv/rancher_certs/cert.pem:/etc/rancher/ssl/cert.pem
+      - /srv/rancher_certs/key.pem:/etc/rancher/ssl/key.pem
+      - /srv/rancher_certs/cacerts.pem:/etc/rancher/ssl/cacerts.pem
     restart: always
     ports:
       - "443:443"
