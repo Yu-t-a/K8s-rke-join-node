@@ -34,3 +34,6 @@ sudo systemctl start ntp
 # หรือใช้ timesyncd
 sudo systemctl enable systemd-timesyncd
 sudo systemctl start systemd-timesyncd
+
+sudo timedatectl set-timezone Asia/Bangkok
+timedatectl
