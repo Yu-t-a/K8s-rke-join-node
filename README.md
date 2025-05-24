@@ -1,5 +1,5 @@
 
-# Set up kubeconfig
+# Config kubeconfig
 Snap คือระบบจัดการแพ็กเกจ (package manager)
 ```
 sudo snap install kubectl --classic     # ติดตั้ง kubectl
@@ -18,7 +18,7 @@ kubectl get nodes
 kubectl get pods -A
 ```
 
-# Setup Node
+# Config Node
 ```
 # ตั้งค่า hostname (แต่ละ node ต้องไม่ซ้ำกัน)
 sudo hostnamectl set-hostname master-node-01  # สำหรับ master
