@@ -18,7 +18,7 @@ kubectl get nodes
 kubectl get pods -A
 ```
 
-# Setup
+# Setup Node
 ```
 # ตั้งค่า hostname (แต่ละ node ต้องไม่ซ้ำกัน)
 sudo hostnamectl set-hostname master-node-01  # สำหรับ master
