@@ -1,3 +1,23 @@
+
+# Set up kubeconfig
+Snap คือระบบจัดการแพ็กเกจ (package manager)
+```
+sudo snap install kubectl --classic     # ติดตั้ง kubectl
+snap list                               # ดูรายการ snap ที่ติดตั้ง
+sudo snap remove kubectl                # ลบ snap
+
+which kubectl
+kubectl version --client
+
+vim kubeconfig.yaml
+chmod 400 kubeconfig.yaml
+export KUBECONFIG=$(pwd)/kubeconfig.yaml
+echo $KUBECONFIG
+
+kubectl get nodes
+kubectl get pods -A
+```
+
 # Setup
 ```
 # ตั้งค่า hostname (แต่ละ node ต้องไม่ซ้ำกัน)
