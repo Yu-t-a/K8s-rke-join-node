@@ -112,5 +112,62 @@ kubectl delete node worker-node-01
 sudo systemctl stop rke2-agent
 ```
 
+1. ตรวจสอบสถานะและทำความสะอาดบน Worker Node
+```
+# หยุด rke2-agent service
+sudo systemctl stop rke2-agent
 
+# ลบข้อมูลเก่า
+sudo rm -rf /var/lib/rancher/rke2/agent/
+sudo rm -rf /etc/rancher/rke2/
+
+# ลบ token เก่า (ถ้ามี)
+sudo rm -f /var/lib/rancher/rke2/server/node-token
+```
+2. ดึง Token และ CA Hash จาก Master Node
+บน master-node ให้รันคำสั่งนี้:
+```
+# ดึง node token
+sudo cat /var/lib/rancher/rke2/server/node-token
+
+# ดึง CA certificate hash
+openssl x509 -pubkey -in /var/lib/rancher/rke2/server/tls/server-ca.crt | \
+openssl rsa -pubin -outform der 2>/dev/null | \
+openssl dgst -sha256 -hex | sed 's/^.* //'
+```
+3. สร้าง Config File ใหม่บน Worker Node
+สร้างไฟล์ /etc/rancher/rke2/config.yaml:
+```
+sudo mkdir -p /etc/rancher/rke2/
+sudo tee /etc/rancher/rke2/config.yaml << EOF
+server: https://10.20.252.15:9345
+token: <YOUR_TOKEN_FROM_MASTER>
+tls-san:
+  - 10.20.252.15
+  - 127.0.0.1
+node-external-ip: <WORKER_NODE_EXTERNAL_IP>
+EOF
+```
+4. ตรวจสอบการเชื่อมต่อเครือข่าย
+```
+# ทดสอบการเชื่อมต่อ
+telnet 10.20.252.15 9345
+
+# ตรวจสอบ firewall
+sudo ufw status
+# หรือ
+sudo iptables -L
+
+# ตรวจสอบ DNS resolution
+nslookup 10.20.252.15
+```
+5. เริ่ม Service อีกครั้ง
+```
+# เริ่ม rke2-agent
+sudo systemctl start rke2-agent
+sudo systemctl enable rke2-agent
+
+# ติดตาม log
+sudo journalctl -u rke2-agent -f
+```
 
