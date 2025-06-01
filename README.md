@@ -42,6 +42,8 @@ curl -k https://rke.pattaya.go.th/ping
 
 # ตรวจสอบ DNS resolution
 nslookup rke.pattaya.go.th
+
+telnet [ip Master node] 9345
 ```
 การตรวจสอบหลังติดตั้ง
 ```
