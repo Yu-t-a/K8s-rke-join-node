@@ -91,6 +91,11 @@ docker compose version
 # Node (Agent) ใน Kubernetes
 ```
 journalctl -u rancher-system-agent.service
+
+บน worker-node-01 รันคำสั่ง:
+sudo journalctl -u rke2-agent -f
+หรือ:
+sudo journalctl -u kubelet -f
 ```
 
 # ขั้นตอนลบแค่ worker-node-01 (แบบ manual แบบปลอดภัย)
