@@ -2,6 +2,8 @@
 # Config kubeconfig
 Snap คือระบบจัดการแพ็กเกจ (package manager)
 ```
+#Control plane (Master Node)
+
 sudo snap install kubectl --classic     # ติดตั้ง kubectl
 snap list                               # ดูรายการ snap ที่ติดตั้ง
 sudo snap remove kubectl                # ลบ snap
