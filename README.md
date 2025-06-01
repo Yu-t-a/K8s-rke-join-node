@@ -14,6 +14,13 @@ chmod 400 kubeconfig.yaml
 export KUBECONFIG=$(pwd)/kubeconfig.yaml
 echo $KUBECONFIG
 
+OR
+
+mkdir -p ~/.kube
+vim config
+sudo chown $(id -u):$(id -g) ~/.kube/config
+
+
 kubectl get nodes
 kubectl get pods -A
 ```
