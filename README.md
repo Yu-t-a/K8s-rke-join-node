@@ -86,8 +86,7 @@ docker --version
 docker compose version
 
 ```
-# Clean-Join-Node-Agent-
-Clean &amp; Join Node (Agent) ใน Kubernetes
+# Node (Agent) ใน Kubernetes
 ```
 journalctl -u rancher-system-agent.service
 ```
