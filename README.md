@@ -91,3 +91,19 @@ docker compose version
 journalctl -u rancher-system-agent.service
 ```
 
+# ขั้นตอนลบแค่ worker-node-01 (แบบ manual แบบปลอดภัย)
+1. Drain node ก่อน (ย้าย workload ออก)
+```
+kubectl drain worker-node-01 --ignore-daemonsets --delete-emptydir-data
+```
+2. ลบ node ออกจาก cluster
+```
+kubectl delete node worker-node-01
+```
+3. หยุด service agent บน worker-node-01
+```
+sudo systemctl stop rke2-agent
+```
+
+
+
